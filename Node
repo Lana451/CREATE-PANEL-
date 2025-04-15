@@ -1,0 +1,145 @@
+3 services:
+
+4
+
+wings:
+
+456
+
+image: ghcr.io/pterodactyl/wings:v1.6.1
+
+restart: always
+
+7
+
+networks:
+
+8
+
+wings0
+
+9
+
+ports:
+
+10
+
+"8080:8080"
+
+11
+
+"2022:2022"
+
+12
+
+"443:443"
+
+13
+
+tty: true
+
+14
+
+environment:
+
+15
+
+TZ: "UTC"
+
+16
+
+WINGS_UID: 988
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+WINGS_GID: 988
+
+WINGS_USERNAME: pterodactyl
+
+volumes:
+
+"/var/run/docker.sock:/var/run/docker.sock"
+
+"/var/lib/docker/containers/:/var/lib/docker/containers/"
+
+- "/etc/pterodactyl/:/etc/pterodactyl/"
+
+"/var/lib/pterodactyl/:/var/lib/pterodactyl/"
+
+"/var/log/pterodactyl/:/var/log/pterodactyl/"
+
+"/tmp/pterodactyl/:/tmp/pterodactyl/"
+
+"/etc/ssl/certs:/etc/ssl/certs:ro"
+
+# you may need /srv/daemon-data if you are upgrading z
+
+from an old daemon
+
+#-"/srv/daemon-data/:/srv/daemon-data/"
+
+# Required for ssl if you use let's encrypt. uncomment
+
+Sto use.
+
+30
+
+#- "/etc/letsencrypt/:/etc/letsencrypt/"
+
+31 networks:
+
+32 wings0:
+
+33
+
+name: wings0
+
+34
+
+driver: bridge
+
+ngs0
+
+35
+
+ipam:
+
+36
+
+config:
+
+37
+
+38
+
+driver_opts:
+
+39
+
+subnet: "172.21.0.0/16"
+
+com.docker.network.bridge.name: wings0
